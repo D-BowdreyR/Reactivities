@@ -1,0 +1,41 @@
+{
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true
+    },
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "connectionTimeout": 30,
+            "driver": "MySQL",
+            "name": "MySQL Server (Local) dev_IsotopeOrders",
+            "port": 33060,
+            "server": "127.0.0.1",
+            "username": "root",
+            "mysqlOptions": {
+                "authProtocol": "xprotocol"
+            }
+        },
+        {
+            "askForPassword": true,
+            "connectionTimeout": 30,
+            "driver": "MySQL",
+            "name": "MySQL Server (Local) RROS MVC Project",
+            "database": "dev_RROS_Mvc",
+            "port": 33060,
+            "server": "127.0.0.1",
+            "username": "root",
+            "mysqlOptions": {
+                "authProtocol": "xprotocol"
+            }
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Reactivities}/API/reactivities.db",
+            "name": "Reactivities",
+            "group": "SQLlite"
+        }
+    ],
+    "csharpextensions.privateMemberPrefix": "_"
+}
