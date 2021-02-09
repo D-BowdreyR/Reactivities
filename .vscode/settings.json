@@ -37,5 +37,7 @@
             "group": "SQLlite"
         }
     ],
-    "csharpextensions.privateMemberPrefix": "_"
+    "csharpextensions.privateMemberPrefix": "_",
+    "files.autoSave": "afterDelay",
+    "editor.formatOnType": true
 }
