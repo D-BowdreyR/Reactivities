@@ -25,16 +25,19 @@ namespace Application.Activities
             {
                 var activity = await _context.Activities.FindAsync(request.Id);
 
-                if (activity == null)
-                    throw new Exception("Could not find activity");
+                // if (activity == null)
+                //     throw new Exception("Could not find activity");
                     
                 _context.Remove(activity);
+
+                await _context.SaveChangesAsync();
+                return Unit.Value;
                 // if save changes returns an int greater than 0 then we can consider this a success
-                var success = await _context.SaveChangesAsync() > 0;
+                // var success = await _context.SaveChangesAsync() > 0;
 
-                if (success) return Unit.Value;
+                // if (success) return Unit.Value;
 
-                throw new Exception("Problem saving changes");
+                // throw new Exception("Problem saving changes");
 
             }
         }

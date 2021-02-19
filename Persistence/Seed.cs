@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain;
 
 namespace Persistence
 {
     public class Seed
     {
-       public static void SeedData(DataContext context)
+       public static async Task SeedData(DataContext context)
        {
-           if(!context.Activities.Any())
-           {
-               var activities = new List<Activity>
+           if(context.Activities.Any()) return;
+
+            var activities = new List<Activity>
                {
                    new Activity
                    {
@@ -104,9 +105,8 @@ namespace Persistence
                        Venue = "Cinema",
                    }
                };
-            context.Activities.AddRange(activities);
-            context.SaveChanges();
-           }
+            await context.Activities.AddRangeAsync(activities);
+            await context.SaveChangesAsync();
        }
     }
 }
