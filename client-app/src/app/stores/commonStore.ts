@@ -21,9 +21,9 @@ export default class CommonStore {
         )
     }
 
-    setServerError = (error: ServerError) => {
+    setServerError = ((error: ServerError) => {
         this.error = error;
-    }
+    })
 
     setToken = (token: string | null) => {
         this.token = token;
