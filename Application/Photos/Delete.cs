@@ -33,7 +33,7 @@ namespace Application.Photos
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.Include(p => p.Photos)
-                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
+                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername(), cancellationToken);
 
                 if (user == null) return null;
 
@@ -50,7 +50,7 @@ namespace Application.Photos
                 user.Photos.Remove(photo);
 
                 // if save changes returns an int greater than 0 then we can consider this a success
-                var success = await _context.SaveChangesAsync() > 0;
+                var success = await _context.SaveChangesAsync(cancellationToken) > 0;
 
                 if (success) return Result<Unit>.Success(Unit.Value);
                 

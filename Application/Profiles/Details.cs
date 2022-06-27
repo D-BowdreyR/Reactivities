@@ -34,9 +34,7 @@ namespace Application.Profiles
             {
                 var user = await _context.Users
                     .ProjectTo<Profile>(_mapper.ConfigurationProvider, cancellationToken)
-                    .SingleOrDefaultAsync(x => x.Username == request.Username);
-
-                if (user == null) return null;
+                    .SingleOrDefaultAsync(x => x.Username == request.Username, cancellationToken);
 
                 return Result<Profile>.Success(user);
             }
