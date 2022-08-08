@@ -49,7 +49,7 @@ namespace Application.Profiles
                 user.Bio = request.Bio ?? user.Bio;
                 user.DisplayName = request.DisplayName ?? user.DisplayName;
 
-                // only update if the state has been modified
+                // set the state to modified to catch where the update request contains no changes
                 _context.Entry(user).State = EntityState.Modified;
                 // save the context
                 var result = await _context.SaveChangesAsync(cancellationToken) > 0;
