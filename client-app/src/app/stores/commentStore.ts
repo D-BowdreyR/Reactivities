@@ -25,10 +25,18 @@ export default class CommentStore {
             this.hubConnection.start().catch(error => console.log('Error establishing the connection: ', error))
             // string arg must match the callback from signalR within the ChatHub
             this.hubConnection.on('LoadComments', (comments: ChatComment[]) => {
-                runInAction(() => this.comments = comments);
+                runInAction(() => {
+                    comments.forEach(comment => {
+                        comment.createdAt = new Date(comment.createdAt + 'Z');
+                    })
+                    this.comments = comments
+                });
             
                 this.hubConnection?.on('ReceiveComment', (comments: ChatComment) => {
-                    runInAction(() => this.comments.push(comments));
+                    runInAction(() => {
+                        comments.createdAt = new Date(comments.createdAt);
+                        this.comments.unshift(comments)
+                    });
                 })
             })
         }
